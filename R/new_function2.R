@@ -7,8 +7,8 @@ new_function2 = function(dataframe, hindfoot_length, weight){
   result = na.omit(result)
   print(result)
   for (r in result){
-    if (r > 4000){
-      message(paste("Possibly too large weight index", r))
+    if (r > 5500){
+      message(paste("That's too big", r))
     }
   }
   return(result)
