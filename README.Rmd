@@ -1,3 +1,5 @@
 # Sample R package (name of R package)
 ## An example of an R package (what happens in package)
 ### Author: Crystal Drago
+
+Read this i guess
