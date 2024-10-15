@@ -1,0 +1,13 @@
+color - color of the crab; blue or orange 
+
+sex - sex of the crab; male or female
+
+frontal_lobe - size of frontal lobe of the crab (mm)
+
+rear_width - width of the back of the crab (mm)
+
+carapace_length - length of the shell (mm)
+
+carapace_width - width of the shell (mm)
+
+body_depth - measurement of body depth of crabs (mm)
