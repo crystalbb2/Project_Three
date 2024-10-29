@@ -99,6 +99,7 @@ ggplot(surveys_complete, mapping=aes(x=sex, y=weight)) + geom_jitter()
 2) Try an ANOVA of this data (5 pt)
 
 ```{r}
+model_fit=lm(weight~sex, surveys_complete)
 anova_model_fit = aov(model_fit)
  summary(anova_model_fit)
 ```
@@ -107,7 +108,6 @@ anova_model_fit = aov(model_fit)
 
 
 ```{r}
-model_fit = lm(weight~sex, data=surveys_complete)
 summary(model_fit)
 ```
 
