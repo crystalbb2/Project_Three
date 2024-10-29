@@ -149,7 +149,7 @@ Check the box next to "projects/project_two/ProjectTwo.Rmd" under the Git tab an
 2) Push your changes to github (10 pts)
 
 ```
-Click push after commiting the changes to Github
+Click push after commiting the document
 ```
 
 
