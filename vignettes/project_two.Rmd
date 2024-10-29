@@ -1,0 +1,186 @@
+---
+title: "project_two"
+output: html_document---
+title: "Project Two"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+Due Oct. 21 at 11:59 PM. 
+
+For this first part of the exam, you can either use `surveys_complete.csv` or your own data. If you are using your own data, you must have data in which you think you have a numerical predictor variable and a numerical response variable. If you are using `surveys_complete`, you can use weight and hindfoot_length for this.
+
+Save this file in your `projects` directory. You can either save it in a project two subdirectory, or just put it in projects. Either way is fine.
+
+1) Load in your data. Which variable will you be using as a predictor, and which as a response? (5 pts)
+
+```{r}
+surveys_complete
+```
+
+```
+Predictor: weight
+Response: hindfoot_length
+```
+
+2) Plot the two against each other with a scatter plot. Do the data appear to be related linearly? (5 pts)
+
+
+```{r}
+ggplot(surveys_complete, mapping = aes(x=weight, y = hindfoot_length)) + geom_point()
+```
+
+```
+They do not appear to be linearly related
+```
+
+
+3) Fit the linear model. View the summary. (5 pts)
+
+
+```{r}
+linear_model = lm(hindfoot_length~weight, surveys_complete)
+summary(linear_model)
+```
+
+4) Does the summary make sense when you compare it to the plot you made? Does our model have good predictive power? Evaluate the residual standard error, intercept, and R-Squared in particular. Would you say your predictor predicts the response?  (10 pts)
+
+
+```
+The summary does make sense compared to the plot made. The model does not seem to have a good predicitve power. The residual standard error being 6.963 is really high, showing that the model does not have good predictive power. The r squared value is 0.467, which means that only 46.76% of the variation in hindfoot length can be explained by weight and 53.24% of the variation in hindfoot length is unexplained, which shows a poor predictive power in the model. The intercept is 21.56 meaning that when the weight of the mouse is 0, the hindfoot length is expected to be 21.56, which really menas nothing because a rat can't weigh nothing. I would say the predictor doesn't really predict the response.
+```
+
+
+5) Plot the model on the graph. Increase the size of the text so it is comfortably readable at 5 feet. Make sure axis labels are readable and not overlapping with one another. (5 pts)
+
+```{r}
+ggplot(surveys_complete, mapping = aes(x=weight, y = hindfoot_length)) + geom_point(size = 0.5) + geom_smooth(method = "lm", color = "blue") + labs(x = "Weight (g)", y = "Hindfoot length (mm)", title = "Linear regression to predict woodrat hindfoot length") + annotate("text", x=50, y=75, label = "R^2 == 0.4676", parse = T, color = "darkred", size = 5) + theme(text = element_text(size = 15))
+```
+
+
+6) Check the normality of the residuals. Do they look OK? Are we violating assumptions? (5 pts)
+
+```{r}
+
+augmented_fit = broom::augment(linear_model)
+ qqnorm(augmented_fit$.resid)
+ qqline(augmented_fit$.resid, col = "red")
+# the normality of the residuals aren't great but they could be worse. The line for the data is a bit squiggly and there's some deviation towards the end. I think some assumptions are being violated because of this but not terribly.
+```
+
+Why is normality of residuals important? 
+
+```
+Normality of residuals is important because it shows whether or not your data is valid for different tests using the data, like hypothesis testing or inferring the data for statistical analysis 
+```
+
+7) If you are using `surveys_complete`: Is there interspecific variation in the linear model? Hint: look at our prior work with facet plots. (15 pts) 
+```{r}
+# Yes, sex and species_id are interspecific variations in the linear model 
+ggplot(surveys_complete, mapping = aes(x=weight, y = hindfoot_length, color = sex)) + geom_point() + facet_wrap(facets=vars(species_id))
+```
+If you are *not* using  `surveys_complete`: Do you think there are groupings within your data that may have a separate linear model? Try grouping the data by that variable and redoing the lm. If this would not make sense for your data, you may also attempt to do multiple predictor variables. (15 pts)
+
+```{r}
+#code here
+```
+
+## Part Two
+
+In this portion, you are free to use your own data if you have a categorical predictor variable and a response variable. Otherwise, you may use the columns sex and weight in `surveys_complete`
+
+1) First, plot the data grouped by sex (5 pts)
+
+```{r}
+ggplot(surveys_complete, mapping=aes(x=sex, y=weight)) + geom_jitter()
+```
+
+2) Try an ANOVA of this data (5 pt)
+
+```{r}
+anova_model_fit = aov(model_fit)
+ summary(anova_model_fit)
+```
+
+3) How about a linear model? What information does this give you that an ANOVA can't? (5 pts)
+
+
+```{r}
+model_fit = lm(weight~sex, data=surveys_complete)
+summary(model_fit)
+```
+
+```
+The linear model gives much more information about the relationship between independent and dependent variable such as intercept of line, slope, and R^2 value, wheras the ANOVA only tells you if there is a significant difference between the variables but no details of the difference 
+```
+
+3) Plot the lm with the data, with points colored by sex. (10 pts)
+
+
+```{r}
+ggplot(model_fit, aes(x=sex, y=weight, color=sex)) + geom_jitter() + labs(x="Sex", y="Weight(g)") + geom_smooth(method="lm") + annotate("text", x=1, y=300, label="R^2==0.0002513", parse=T, size=5)
+```
+
+4) Choose any model we've looked at so far, but use two predictor variables. Perform an LM, plot the results, and state if this changes your interpretation of the relationship between variables (10 pts)
+
+```{r}
+model_fit2 = lm(hindfoot_length~weight+species_id, surveys_complete)
+ summary(model_fit2)
+```
+
+```{r}
+ggplot(surveys_complete, aes(x=weight, y=hindfoot_length, color=species_id)) + geom_jitter(size=0.5) + labs(x="Weight", y="Hindfoot length (mm)") + geom_smooth(method="lm") + annotate("text", x=50, y=80, label="R^2==0.9785", parse=T, size=5)
+```
+
+```
+This does change my interpretation of the relationship between the variables because this graph and linear model show that species id plays an important role in determining the hindfoot length of the woodrat and it helps with the predictive power of the data
+```
+
+## Part Three
+
+
+1) Add and commit this document (5 pts)
+
+```
+Check the box next to "projects/project_two/ProjectTwo.Rmd" under the Git tab and click commit. Add a comment in the commit message box and click commit.
+```
+
+2) Push your changes to github (10 pts)
+
+```
+Click push after commiting the changes to Github
+```
+
+
+
+# MS students
+
+My expectation is that you'll do this with your own data. If any part of this doesn't make sense with your data, please get in touch ASAP so we can work it out.
+
+date: "2024-10-29"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
