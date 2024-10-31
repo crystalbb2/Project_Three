@@ -1,0 +1,19 @@
+Package: DragoR
+Title: Functions for project three
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Crystal", family =  "Drago", email = "crystal.drago@selu.edu", role = c("aut", "cre"))
+Description: What the package does (one paragraph).
+Imports:
+    dplyr,
+    magrittr,
+    readr,
+    tibble
+License: MIT
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
