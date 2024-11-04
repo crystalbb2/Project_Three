@@ -2,20 +2,20 @@
 % Please edit documentation in R/new_function2.R
 \name{new_function2}
 \alias{new_function2}
-\title{Multiplies hindfoot length and weight}
+\title{Multiply hindfoot length and weight of woodrats}
 \usage{
 new_function2(dataframe, hindfoot_length, weight)
 }
 \arguments{
-\item{dataframe}{The path to the tab-delimited file you want to process}
+\item{dataframe}{The path to the csv file you want to process}
 
-\item{hindfoot_length}{The length of wood rats' hindfoot in mm}
+\item{hindfoot_length}{The length of wood rats hindfoot in mm}
 
 \item{weight}{The weight of wood rats in grams}
 }
 \value{
-Error message for numbers greater than 5500
+Error message for numbers greater than 5500 after using equation
 }
 \description{
-Multiplies hindfoot length and weight
+Multiply hindfoot length and weight of woodrats
 }
