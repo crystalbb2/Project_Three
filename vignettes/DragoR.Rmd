@@ -46,6 +46,7 @@ remove_nas = function(dataframe, weight, sex, year){
 }
 ```
 
+
 This function will find the average weight of wood rats for the years 1977-2002 based off of sex. This is interesting to see if sex and year play a role in weight of wood rats or to see if there is a steady increase or decrease in weight of rats throughout the years.
 ```{r}
 avg_weight = function(dataframe, weight, sex, year){
@@ -60,6 +61,7 @@ avg_weight = function(dataframe, weight, sex, year){
    }
 ```
 
+
 This function will find the linear model of weight of wood rats based off sex and year. This will prove if the sex and year play a significant role in the weight of the rats.
 ```{r}
 linear_model = function(dataframe, weight, sex, year){
@@ -72,6 +74,7 @@ linear_model = function(dataframe, weight, sex, year){
   return(sum_lm)
 }
 ```
+
 
 This function will make a boxplot of the weight of rats for each year in the dataset based off sex. This will show how close the average weights are to each other from each sex and every year.
 ```{r}
@@ -90,6 +93,7 @@ plot_func = function(dataframe, weight, sex, year){
   return(dataframe)
 }
 ```
+
 
 This function will give an interaction plot of the mean weight of every year based off sex. It's interesting to see with this plot how the weight has no steady relationship throughout the years. 
 ```{r}
