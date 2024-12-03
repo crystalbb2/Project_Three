@@ -2,7 +2,7 @@
 % Please edit documentation in R/BoxPlot.R
 \name{plot_func}
 \alias{plot_func}
-\title{Box plot of wood rats weight for each year}
+\title{Box plot of wood rats weight for each year based off sex}
 \usage{
 plot_func(dataframe, weight, sex, year)
 }
@@ -19,5 +19,5 @@ plot_func(dataframe, weight, sex, year)
 Box plot of weight of wood rats per year for males and females
 }
 \description{
-Box plot of wood rats weight for each year
+Box plot of wood rats weight for each year based off sex
 }
