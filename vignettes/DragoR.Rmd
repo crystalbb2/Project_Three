@@ -17,6 +17,13 @@ knitr::opts_chunk$set(
 ## Introducing Mean Weight of Wood Rats Based Off Year and Sex
 
 
+## Installation Instructions
+```{r setup}
+library(devtools)
+devtools::install_github("crystalbb2/Project_Three")
+library(DragoR)
+```
+
 ## Data Installation
 + 
 https://docs.google.com/spreadsheets/d/1oxVcm-hCRdqSpdJ-joCZL9Fo7rbN3SQiF_OiKEI9AAw/edit?usp=sharing
@@ -26,12 +33,6 @@ https://docs.google.com/spreadsheets/d/1oxVcm-hCRdqSpdJ-joCZL9Fo7rbN3SQiF_OiKEI9
 + In Posit Cloud, click upload file button under files tab and upload file
 + Rename file to surveys.csv
 
-## Installation Instructions
-```{r setup}
-library(devtools)
-devtools::install_github("crystalbb2/Project_Three")
-library(DragoR)
-```
 
 ## Functions 
 
