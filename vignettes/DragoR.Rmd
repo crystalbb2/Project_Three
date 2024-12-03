@@ -18,12 +18,6 @@ knitr::opts_chunk$set(
 
 ## Installation Instructions
 
-
-```{r setup}
-devtools::install_github("crystalbb2/Project_Three")
-library(DragoR)
-```
-
 ## Data Installation
 + 
 https://docs.google.com/spreadsheets/d/1oxVcm-hCRdqSpdJ-joCZL9Fo7rbN3SQiF_OiKEI9AAw/edit?usp=sharing
@@ -32,3 +26,80 @@ https://docs.google.com/spreadsheets/d/1oxVcm-hCRdqSpdJ-joCZL9Fo7rbN3SQiF_OiKEI9
 + Download as Comma Separated Values (.csv) file
 + In Posit Cloud, click upload file button under files tab and upload file
 + Rename file to surveys.csv
+
+```{r setup}
+library(devtools)
+devtools::install_github("crystalbb2/Project_Three")
+library(DragoR)
+```
+
+## Functions 
+
+This function will remove the NA and "Not Recorded" values out of the surveys dataset and print 200 rows to prove that the values were taken out. This function is useful because NA values are useless and get in the way.
+```{r}
+remove_nas = function(dataframe, weight, sex, year){
+   dataframe = readr::read_csv("data/surveys.csv") %>%
+   naniar::replace_with_na_if(.predicate = is.character, condition = ~.x=="Not Recorded") %>%
+   na.omit() %>%
+   print(n=200)
+   return(dataframe)
+}
+```
+
+This function will find the average weight of wood rats for the years 1977-2002 based off of sex. This is interesting to see if sex and year play a role in weight of wood rats or to see if there is a steady increase or decrease in weight of rats throughout the years.
+```{r}
+avg_weight = function(dataframe, weight, sex, year){
+   dataframe = read_csv("data/surveys.csv") %>%
+   replace_with_na_if(.predicate = is.character, condition = ~.x=="Not Recorded") %>%
+   na.omit() %>%
+   group_by(sex, year) %>%
+   select(weight, sex, year) %>%
+   summarize(mean=mean(weight)) %>%
+   print(n=52)
+   return(dataframe)
+   }
+```
+
+This function will find the linear model of weight of wood rats based off sex and year. This will prove if the sex and year play a significant role in the weight of the rats.
+```{r}
+linear_model = function(dataframe, weight, sex, year){
+  dataframe = read_csv("data/surveys.csv") %>%
+  select(weight, sex, year) %>%
+  replace_with_na_if(.predicate = is.character, condition = ~.x== "Not Recorded") %>%
+  na.omit()
+  lm_result = lm(formula = weight ~ sex + year, data = dataframe)
+  sum_lm  = summary(lm_result)
+  return(sum_lm)
+}
+```
+
+This function will make a boxplot of the weight of rats for each year in the dataset based off sex. This will show how close the average weights are to each other from each sex and every year.
+```{r}
+plot_func = function(dataframe, weight, sex, year){
+  dataframe = read_csv("data/surveys.csv") %>%
+  select(weight, sex, year) %>%
+  replace_with_na_if(.predicate = is.character, condition = ~.x=="Not Recorded") %>%
+  na.omit() %>%
+  ggplot(mapping = aes(x=sex, y=weight, color=sex)) +
+    geom_boxplot(size=.2) +
+    labs(x="Year", y="Weight(g)", title = "Mean Weight") +
+    facet_wrap(facet=vars(year)) +
+    scale_y_log10() +
+    theme_bw() +
+    theme(plot.title = element_text(hjust=.5))
+  return(dataframe)
+}
+```
+
+This function will give an interaction plot of the mean weight of every year based off sex. It's interesting to see with this plot how the weight has no steady relationship throughout the years. 
+```{r}
+interaction_plot = function(dataframe, weight, sex, year){
+  dataframe = read_csv("data/surveys.csv") %>%
+  group_by(sex, year) %>%
+  replace_with_na_if(.predicate = is.character, condition = ~.x=="Not Recorded") %>%
+  na.omit() %>%
+  summarize(mean_weight = mean(weight)) %>%
+  ggplot(mapping = aes(x=year, y=mean_weight, color=sex)) + geom_point() + geom_path(aes(group=sex))
+  return(dataframe)
+}
+```
