@@ -1,15 +1,17 @@
 Package: DragoR
-Title: Functions for project three
+Title: Average Weight of Wood Rats based off year for male and females
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "Crystal", family =  "Drago", email = "crystal.drago@selu.edu", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-Imports:
+    person(given = "Crystal", family = "Drago", email = "crystal.drago@selu.edu", role = c("aut", "cre"))
+Description: Finds the mean weight of wood rats based off sex for years 1977-2002 and compares them using graphs and statistical analysis.
+Imports: 
     dplyr,
+    ggplot2,
     magrittr,
     readr,
     tibble
-License: MIT
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2

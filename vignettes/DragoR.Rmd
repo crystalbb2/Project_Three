@@ -1,8 +1,8 @@
 ---
-title: "Multiply Weight * Hindfoot Length Tutorial"
+title: "Mean Weight of Wood Rats Based off Year and Sex Tutorial"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Multiply Weight * Hindfoot Length Tutorial}
+  %\VignetteIndexEntry{Mean Weight of Wood Rats Based off Year and Sex}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,6 +14,21 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Introducing Mean Weight of Wood Rats Based Off Year and Sex
+
+## Installation Instructions
+
+
 ```{r setup}
+devtools::install_github("crystalbb2/Project_Three")
 library(DragoR)
 ```
+
+## Data Installation
++ 
+https://docs.google.com/spreadsheets/d/1oxVcm-hCRdqSpdJ-joCZL9Fo7rbN3SQiF_OiKEI9AAw/edit?usp=sharing
++ Open above url
++ Click file tab on google sheets then download
++ Download as Comma Separated Values (.csv) file
++ In Posit Cloud, click upload file button under files tab and upload file
++ Rename file to surveys.csv
