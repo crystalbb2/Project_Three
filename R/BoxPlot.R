@@ -1,4 +1,4 @@
-#' Box plot of wood rats weight for each year
+#' Box plot of wood rats weight for each year based off sex
 #'
 #' @param dataframe The path to the csv file you want to process
 #' @param weight The weight of wood rats in grams
