@@ -8,6 +8,7 @@ Imports:
     dplyr,
     ggplot2,
     magrittr,
+    naniar,
     readr,
     tibble
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
