@@ -14,7 +14,7 @@ plot_func = function(dataframe, weight, sex, year){
   na.omit() %>%
   ggplot(mapping = aes(x=sex, y=weight, color=sex)) +
     geom_boxplot(size=.2) +
-    labs(x="Year", y="Weight(g)", title = "Mean Weight") +
+    labs(x="Year", y="Weight(g)") +
     facet_wrap(facet=vars(year)) +
     scale_y_log10() +
     theme_bw() +
